@@ -152,4 +152,3 @@ if __name__ == "__main__":
         O valor devolvido por principal (0) vira o código de saída do programa.
     """
     sys.exit(main(sys.argv[1:]))
-
