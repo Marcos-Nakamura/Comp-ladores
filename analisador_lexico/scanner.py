@@ -25,7 +25,7 @@ t_OR            = r'\|\|'
 t_NOT           = r'!'
 
 # Ignorar espaços e tabulações
-t_ignore = ' \t'
+t_ignore = ' \t\r'
 
 def t_IDENT(t):
     r'[a-zA-Z_][a-zA-Z0-9_]*'
@@ -39,7 +39,7 @@ def t_NUM(t):
     return t
 
 def t_newline(t):
-    r'n+'
+    r'\n+'
     t.lexer.lineno += len(t.value)
 
 def t_error(t):
