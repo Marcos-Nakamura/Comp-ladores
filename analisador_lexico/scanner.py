@@ -24,23 +24,36 @@ t_AND           = r'&&'
 t_OR            = r'\|\|'
 t_NOT           = r'!'
 
-# Ignorar espaços e tabulações
-t_ignore = ' \t\r'
+# Ignora uma linha inteira após //
+def t_COMENTARIO(t):
+    r'//[^\n]*'
+    pass
 
-def t_IDENT(t):
-    r'[a-zA-Z_][a-zA-Z0-9_]*'
-    t.type = p_reservadas.get(t.value, 'IDENT')
-    return t
+# Descarta por completo números inválidos (1abc)
+def t_NUM_INVALIDO(t):
+    r'\d+[a-zA-Z_][a-zA-Z0-9_]*'
+    erros.registra(
+        fase="LÉXICO",
+        linha=t.lexer.lineno,
+        mensagem=f"Identificador inválido '{t.value}' (não pode iniciar com número)"
+    )
 
-# Números
 def t_NUM(t):
     r'\d+'
     t.value = int(t.value)
     return t
 
+def t_IDENT(t):
+    r'[a-zA-Z][a-zA-Z0-9_]*'
+    t.type = p_reservadas.get(t.value, 'IDENT')
+    return t
+
 def t_newline(t):
     r'\n+'
     t.lexer.lineno += len(t.value)
+
+# Ignorar espaços e tabulações
+t_ignore = ' \t\r'
 
 def t_error(t):
     caractere_invalido = t.value[0]
