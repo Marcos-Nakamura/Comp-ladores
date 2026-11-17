@@ -4,7 +4,7 @@
     chama as fases da compilação e imprime o que for necessario, (MEPA ou erros), é impostante lembrar que
     este arquivo não realiza papel  da compilação em si
 
-    Entrada: python compilador.py [nome do programa].nesti > [nome do programa].mepa
+    Entrada: python3 nesti.py <nome do arquivo>.nesti
     Saída: código MEPA na saída padrão, ou lista de erros 
 '''
 
@@ -68,6 +68,10 @@ def main(entrada):
     """
     raiz = parser.parse(codigo, lexer = scanner)
     verifica_erros()
+
+    if raiz is None:   # o parser não montou a árvore e não registrou erro
+        print("ERRO SINTÁTICO: não foi possível montar a árvore do programa", file=sys.stderr)
+        return 1
 
     #passada 2 análise semântica
     """
