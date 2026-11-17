@@ -19,7 +19,7 @@ from __future__ import annotations #para fazer anotação de tipos
 
 from arvore_sintatica.ast_expressoes import No, Expr, Id, Chamada #apenas importando tipos definidos anteriormente
 
-from dataclasses import dataclass, field #serve para criar as classes
+from dataclasses import dataclass #serve para criar as classes
 
 #Definições
 """
@@ -44,12 +44,19 @@ class Atrib(Cmd):
 @dataclass
 class If(Cmd):
     """
-        Aqui eu defino o "if" e suas condições, como senão é opcional então precisa de um valor padrão, uma lista vazia
-        Como o python não deixa escrever "= []" direto eu uso o "(default_factory=list)" para resolver isso
+        Aqui eu defino o "if" e suas condições, como senão é opcional então precisa de um valor padrão,
+        o None é o valor padrão que faz com que funções de retorno void funcionem
     """
     condicao: Expr
     entao: list[Cmd]
-    senao: list[Cmd] = field(default_factory=list)
+    senao: Else|None = None
+
+@dataclass
+class Else(Cmd):
+    """
+        Aqui eu defino o "else"
+    """
+    comando: list[Cmd]
 
 @dataclass
 class While(Cmd):
