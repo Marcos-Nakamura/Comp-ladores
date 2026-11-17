@@ -1,6 +1,6 @@
 ''' função do arquivo 
 
-    Esse é o ponto de partida do compilador, onde é recebido o arquivo ".nesti" pela linha de comando,
+    Este é o ponto de partida do compilador, onde é recebido o arquivo ".nesti" pela linha de comando,
     chama as fases da compilação e imprime o que for necessario, (MEPA ou erros), é impostante lembrar que
     este arquivo não realiza papel  da compilação em si
 
