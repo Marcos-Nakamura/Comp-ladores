@@ -1,4 +1,4 @@
-reservadas = {
+p_reservadas = {
     'program':  'PROGRAM',
     'fun':      'FUN',
     'int':      'INT',
@@ -8,7 +8,7 @@ reservadas = {
     'else':     'ELSE',
     'while':    'WHILE',
     'return':   'RETURN',
-    'read':     'RETURN',
+    'read':     'READ',
     'print':    'PRINT',
     'true':     'TRUE',
     'false':    'FALSE',
@@ -21,6 +21,7 @@ tokens = (
     'FECHA_PAREN',
     'PONTO_VIRG',
     'ABRE_CHAVE',
+    'FECHA_CHAVE',
     'VIRGULA',
     'SETA',
     'ATRIB',
@@ -37,4 +38,4 @@ tokens = (
     'AND',
     'OR',
     'NOT'
-) + tuple(reserved.values())
+) + tuple(p_reservadas.values())

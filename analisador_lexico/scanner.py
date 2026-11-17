@@ -1,9 +1,10 @@
 import ply.lex as lex
-from tokens import tokens, reservadas
+from .tokens import tokens, p_reservadas
+import erros
 
-t_ABRE_PAREN    = r'\()'
+t_ABRE_PAREN    = r'\('
 t_FECHA_PAREN   = r'\)'
-t_PONT_VIRG     = r';'
+t_PONTO_VIRG     = r';'
 t_ABRE_CHAVE    = r'\{'
 t_FECHA_CHAVE   = r'\}'
 t_VIRGULA       = r','
@@ -23,9 +24,12 @@ t_AND           = r'&&'
 t_OR            = r'\|\|'
 t_NOT           = r'!'
 
+# Ignorar espaços e tabulações
+t_ignore = ' \t'
+
 def t_IDENT(t):
     r'[a-zA-Z_][a-zA-Z0-9_]*'
-    t.type = reservadas.get(t.value, 'IDENT')
+    t.type = p_reservadas.get(t.value, 'IDENT')
     return t
 
 # Números
@@ -34,5 +38,17 @@ def t_NUM(t):
     t.value = int(t.value)
     return t
 
-# Ignorar espaços e tabulações
-t_ignore = ' \t'
+def t_newline(t):
+    r'n+'
+    t.lexer.lineno += len(t.value)
+
+def t_error(t):
+    caractere_invalido = t.value[0]
+    erros.registra(
+        fase="LÉXICO",
+        linha=t.lexer.lineno,
+        mensagem=f"Caractere inválido '{caractere_invalido}'"
+    )
+    t.lexer.skip(1)
+
+scanner = lex.lex()
