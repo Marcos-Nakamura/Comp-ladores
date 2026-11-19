@@ -1,8 +1,6 @@
 '''
 Erro -> tipo especial usado internamente pela análise semântica para indicar
 que uma expressão apresentou algum problema
-
-A testar
 '''
 ERRO = "erro"
 INT = "int"

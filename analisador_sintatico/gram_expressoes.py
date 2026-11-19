@@ -145,7 +145,7 @@ def p_expr_multiplicativa_expr_unaria(p):
 
 def p_expr_unaria_menos(p):
     "expr_unaria : MENOS expr_unaria"
-    p[0] = OpBinario(
+    p[0] = OpUnario(
         linha=p.lineno(1),
         operador="-",
         operando=p[2]
@@ -153,7 +153,7 @@ def p_expr_unaria_menos(p):
 
 def p_expr_unaria_not(p):
     "expr_unaria : NOT expr_unaria"
-    p[0] = OpBinario(
+    p[0] = OpUnario(
         linha=p.lineno(1),
         operador="!",
         operando=[2]

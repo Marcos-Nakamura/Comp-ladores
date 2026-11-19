@@ -1,4 +1,6 @@
 '''
+A testar
+
 Entrada: Nenhuma.
 Saída: Classe dos nós de expressão e classes-base, usados pelo parser, semântico e gerador.
 Depende de: apenas bibliotecas padrões do Python
