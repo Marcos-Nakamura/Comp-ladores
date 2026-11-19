@@ -1,3 +1,6 @@
+'''
+A testar 
+'''
 from ply import yacc
 from analisador_lexico.tokens import tokens
 from arvore_sintatica.ast_expressoes import (
@@ -31,7 +34,7 @@ def p_exprOr_exprAnd(p):
 # Expressões lógicas E
 
 def p_exprAnd(p):
-    "exprAnd : exprAnd ABD expr_igual"
+    "exprAnd : exprAnd AND expr_igual"
     p[0] = OpBinario(
         linha=p.lineno(p),
         operador="&&",
@@ -142,7 +145,7 @@ def p_expr_multiplicativa_expr_unaria(p):
 
 def p_expr_unaria_menos(p):
     "expr_unaria : MENOS expr_unaria"
-    p[0] = OpBinario(
+    p[0] = OpUnario(
         linha=p.lineno(1),
         operador="-",
         operando=p[2]
@@ -150,7 +153,7 @@ def p_expr_unaria_menos(p):
 
 def p_expr_unaria_not(p):
     "expr_unaria : NOT expr_unaria"
-    p[0] = OpBinario(
+    p[0] = OpUnario(
         linha=p.lineno(1),
         operador="!",
         operando=[2]

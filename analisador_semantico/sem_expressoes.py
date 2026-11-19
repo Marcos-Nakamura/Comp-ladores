@@ -1,4 +1,5 @@
 '''
+A testar
 Análise semântica de expressões da linguagem Nesti.
 
 O Contexto deve oferecer:
