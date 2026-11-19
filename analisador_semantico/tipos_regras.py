@@ -1,3 +1,7 @@
+'''
+Erro -> tipo especial usado internamente pela análise semântica para indicar
+que uma expressão apresentou algum problema
+'''
 ERRO = "erro"
 INT = "int"
 BOOL = "bool"
