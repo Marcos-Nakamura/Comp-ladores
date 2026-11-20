@@ -15,7 +15,6 @@ from analisador_lexico.tokens import tokens
 import erros
 
 
-
 #-------------Símbolo inicial--------------#
 
 
@@ -24,38 +23,38 @@ start = "programa"
 
 #---------------Regra vazia-----------------#
 
-# p_empty
-# Pode:     ser usada por qualquer regra das três gramáticas (`... | empty`).
-# Não pode: existir em outro arquivo também (PLY avisa/duplica a regra).
 
 def p_empty(p):
-    """
-    empty :
-    """
-    pass
+  """
+  empty :
+  """
+  pass
 
 
 #--------------Erro sintático---------------#
 
-# Como o PLY chama isto: quando o próximo token não cabe em nenhuma regra,
-# ele chama p_error(p) UMA vez, passando o token que deu problema
-# (com .type, .value e .lineno), ou None se o arquivo acabou antes da hora.
-
 
 def p_error(p):
 
+  houve_lexico = any(e.fase == "LÉXICO" for e in erros.lista_erros)
+
+  if not houve_lexico:
     if p:
         erros.registra("SINTÁTICO", p.lineno, f"token inesperado '{p.value}'")
     else:
         erros.registra("SINTÁTICO", None, "fim inesperado do arquivo")
 
-    while True:
-        tok = parser.token()    # pedir próximo token
-        if not tok:             # se veio None, acabou
-            break
+  # descartar tokens até EOF
+  while True:
+    tok = parser.token()    # pedir próximo token
+    if not tok:             # se veio None, acabou
+        break
+
 
 #--------------Construção do parser--------------#
 
+
 parser = yacc.yacc(debug=True, write_tables=True)
+
 
 #------------------------------------------------#
