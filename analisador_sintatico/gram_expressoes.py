@@ -12,7 +12,7 @@ from arvore_sintatica.ast_expressoes import (
     Chamada,
 )
 
-s_inicial = "expr"
+expressao = "expr"
 
 ##############################################################
 # Expressões lógicas OU
@@ -49,27 +49,24 @@ def p_exprAnd_expr_igualdade(p):
 ##############################################################
 # Expressões de igualdade e diferença
 
-def p_expr_igualdade_igual(p):
-    "expr_igualdade : expr_igualdade IGUAL expr_relacional"
+def p_expr_igualdade(p):
+    '''expr_igualdade : expr_igualdade IGUAL expr_relacional
+                      | expr_igualdade DIFERENTE expr_relacional'''
+
+    operadores = {
+        "IGUAL": "==",
+        "DIFERENTE": "!="
+    }
     p[0] = OpBinario(
         linha=p.lineno(2),
-        operador="!=",
-        esquerda=p[1],
-        direita=p[3]
-    )
-
-def p_expr_igualdade_diferente(p):
-    "expr_igualdade :  expr_igualdade DIFERENTE expr_relacional"
-    p[0] = OpBinario(
-        linha=p(2),
-        operador="!=",
+        operador=operadores[p.slice[2].type],
         esquerda=p[1],
         direita=p[3]
     )
 
 def p_expr_igualdade_relacional(p):
     "expr_igualdade : expr_relacional"
-    p[0] - p[3]
+    p[0] = p[3]
 
 ##############################################################
 # Expressões relacionais
@@ -84,7 +81,7 @@ def p_expr_relacional(p):
         "MENOR": "<",
         "MENOR_IGUAL": "<=",
         "MAIOR": ">",
-        "MAIOR_IGUAL": ">="
+        "MAIOR_IGUAL": ">=",
     }
     p[0] = OpBinario(
         linha=p.lineno(2),
@@ -115,6 +112,7 @@ def p_expr_aditiva(p):
     )
 
 def p_expr_aditiva_multiplicativa(p):
+    "expr_aditiva : expr_multiplicativa"
     p[0] = p[1]
 
 
@@ -156,7 +154,7 @@ def p_expr_unaria_not(p):
     p[0] = OpUnario(
         linha=p.lineno(1),
         operador="!",
-        operando=[2]
+        operando=p[2]
     )
 
 def p_expr_unaria_expr_primaria(p):
@@ -208,11 +206,11 @@ def p_chamada_com_argumentos(p):
     p[0] = Chamada(
         linha=p.lineno(1),
         nome=p[1],
-        argumentos=[3]
+        argumentos=p[3]
     )
 
 def p_lista_argumentos_um(p):
-    "lista_argumentos : expressao"
+    "lista_argumentos : expr"
     p[0] = [p[1]]
 
 def p_lista_argumentos_varios(p):

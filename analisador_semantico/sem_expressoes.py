@@ -13,6 +13,7 @@ permitidas como comandos isolados por analisar_chamada_como_comando().
 '''
 from __future__ import annotations
 from .tipos_regras import tipo_resultado, ERRO, INT, BOOL
+import unicodedata
 
 VOID = "void"
 
@@ -21,7 +22,17 @@ def linha(no):
 
 def categoria(simbolo):
     categoria = getattr(simbolo, "categoria", "")
-    return categoria.strip().lower().replace("á", "a").replace("â", "a")
+
+    catogoria = categoria.strip().lower()
+
+    categoria = unicodedata.normalize("NFD", categoria)
+    categoria = "".join(
+        caractere
+        for caractere in categoria
+        if unicodedata.category(caractere) != "Mn"
+    )
+
+    return categoria
 
 def eh_funcao(simbolo):
     return categoria(simbolo) in {"funcao", "function"}
@@ -43,7 +54,7 @@ def visita_Booleano(no, contexto):
     no.tipo = BOOL
     return no.tipo
 
-def visita_Variavel(no, contexto):
+def visita_Id(no, contexto):
     simbolo = contexto.tabela.buscar(no.nome)
     no.simbolo = simbolo
 
