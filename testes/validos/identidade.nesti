@@ -1,0 +1,9 @@
+program teste {
+    fun identidade(int valor) -> int {
+        return valor;
+    }
+    print(identidade(37));
+}
+// saida: 37
+// instrucao: CRVL 1,-5
+// instrucao: ARMZ 1,-6

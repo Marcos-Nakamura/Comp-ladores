@@ -1,0 +1,6 @@
+program teste {
+    int x;
+    fun f() -> void {}
+    x = 1 + f();
+}
+// erro: ERRO SEMÂNTICO na linha 4: função 'f' não retorna valor e não pode ser usada em uma expressão

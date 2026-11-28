@@ -1,0 +1,9 @@
+program teste {
+    int total = 0;
+    fun somar(int x) -> void { total = total + x; return; }
+    fun contar() -> int { total = total + 1; return total; }
+    somar(4);
+    contar();
+    print(total);
+}
+// saida: 5

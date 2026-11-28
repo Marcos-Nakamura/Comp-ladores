@@ -1,0 +1,4 @@
+program teste {
+    print(true + 2);
+}
+// erro: ERRO SEMÂNTICO na linha 2: operandos incompatíveis com o operador '+': 'bool' e 'int'

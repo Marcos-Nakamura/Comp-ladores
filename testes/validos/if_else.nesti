@@ -1,0 +1,6 @@
+program teste {
+    if (true) { print(1); } else { print(2); }
+    if (false) { print(3); } else { print(4); }
+    if (false) { print(5); }
+}
+// saida: 1 4

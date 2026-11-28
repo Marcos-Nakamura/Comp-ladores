@@ -1,0 +1,5 @@
+program teste {
+    fun f() -> void {}
+    print(f());
+}
+// erro: ERRO SEMÂNTICO na linha 3: função 'f' não retorna valor e não pode ser usada em uma expressão

@@ -1,0 +1,7 @@
+program teste {
+    fun sub(int a, int b) -> int {
+        return a - b;
+    }
+    print(sub(10, 3));
+}
+// saida: 7

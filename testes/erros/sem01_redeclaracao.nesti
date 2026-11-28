@@ -1,0 +1,5 @@
+program teste {
+    int x;
+    bool x;
+}
+// erro: ERRO SEMÂNTICO na linha 3: variável 'x' já declarada neste escopo

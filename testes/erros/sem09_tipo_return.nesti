@@ -1,0 +1,6 @@
+program teste {
+    fun f() -> int {
+        return false;
+    }
+}
+// erro: ERRO SEMÂNTICO na linha 3: return do tipo bool, esperado int

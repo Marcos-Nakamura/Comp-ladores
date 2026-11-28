@@ -63,6 +63,7 @@ class TabelaSimbolos:
     def __init__(self):
         self.pilha: list[dict[str, Simbolo]] = [{}]
         self.cont: list[int] = [0]
+        self.cont_rotulos = 0
 
     @property
     def nivel(self) -> int:

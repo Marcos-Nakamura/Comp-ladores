@@ -1,0 +1,11 @@
+program teste {
+    fun primeira(int a) -> int {
+        fun segunda(int b) -> int {
+            fun terceira(int c) -> int { return a * 100 + b * 10 + c; }
+            return terceira(3);
+        }
+        return segunda(2);
+    }
+    print(primeira(1));
+}
+// saida: 123

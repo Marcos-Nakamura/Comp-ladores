@@ -1,0 +1,6 @@
+program teste {
+    fun f() -> void {
+        return 1;
+    }
+}
+// erro: ERRO SEMÂNTICO na linha 3: função void não pode retornar valor

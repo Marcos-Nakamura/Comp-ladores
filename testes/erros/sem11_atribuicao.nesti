@@ -1,0 +1,5 @@
+program teste {
+    int x;
+    x = true;
+}
+// erro: ERRO SEMÂNTICO na linha 3: atribuição incompatível: variavel é int e expressao é bool
