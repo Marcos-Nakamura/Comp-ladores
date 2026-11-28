@@ -1,0 +1,5 @@
+program teste {
+    fun f(int x) -> void {}
+    f();
+}
+// erro: ERRO SEMÂNTICO na linha 3: função 'f' espera 1 argumento(s), mas recebeu 0

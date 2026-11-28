@@ -1,0 +1,9 @@
+program teste {
+    int chamadas = 0;
+    fun conta() -> bool {
+        chamadas = chamadas + 1;
+        return true;
+    }
+    print(false && conta(), true || conta(), chamadas);
+}
+// saida: 0 1 2

@@ -1,5 +1,6 @@
 '''
-A testar 
+Define as regras que o parser usa para transformar expressões Nesti em nós da
+árvore sintática. Essas regras determinam como os operadores se agrupam e respeitam os parênteses.
 '''
 from ply import yacc
 from analisador_lexico.tokens import tokens
@@ -12,7 +13,9 @@ from arvore_sintatica.ast_expressoes import (
     Chamada,
 )
 
-expressao = "expr"
+def p_expressao(p):
+    "expressao : exprOr"
+    p[0] = p[1]
 
 ##############################################################
 # Expressões lógicas OU
@@ -34,9 +37,9 @@ def p_exprOr_exprAnd(p):
 # Expressões lógicas E
 
 def p_exprAnd(p):
-    "exprAnd : exprAnd AND expr_igual"
+    "exprAnd : exprAnd AND expr_igualdade"
     p[0] = OpBinario(
-        linha=p.lineno(p),
+        linha=p.lineno(2),
         operador="&&",
         esquerda=p[1],
         direita=p[3]
@@ -66,7 +69,7 @@ def p_expr_igualdade(p):
 
 def p_expr_igualdade_relacional(p):
     "expr_igualdade : expr_relacional"
-    p[0] = p[3]
+    p[0] = p[1]
 
 ##############################################################
 # Expressões relacionais
@@ -186,7 +189,7 @@ def p_expr_primaria_chamada(p):
     p[0] = p[1]
 
 def p_expr_primaria_parenteses(p):
-    "expr_primaria : ABRE_PAREN expr FECHA_PAREN"
+    "expr_primaria : ABRE_PAREN expressao FECHA_PAREN"
     p[0] = p[2]
 
 ##############################################################
@@ -210,9 +213,9 @@ def p_chamada_com_argumentos(p):
     )
 
 def p_lista_argumentos_um(p):
-    "lista_argumentos : expr"
+    "lista_argumentos : expressao"
     p[0] = [p[1]]
 
 def p_lista_argumentos_varios(p):
-    "lista_argumentos : lista_argumentos VIRGULA expr"
+    "lista_argumentos : lista_argumentos VIRGULA expressao"
     p[0] = p[1] + [p[3]]

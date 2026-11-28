@@ -1,0 +1,6 @@
+program teste {
+    fun f() -> int {
+        print(1);
+    }
+}
+// erro: ERRO SEMÂNTICO na linha 2: função 'f' de tipo int não retorna valor

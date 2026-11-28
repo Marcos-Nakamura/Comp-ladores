@@ -1,9 +1,6 @@
 '''
-A testar
-
-Entrada: Nenhuma.
-Saída: Classe dos nós de expressão e classes-base, usados pelo parser, semântico e gerador.
-Depende de: apenas bibliotecas padrões do Python
+Define as classes que representam constantes, identificadores, operações e chamadas
+de função na árvore sintática. O parser cria esses nós e a análise semântica os anota para a geração de código.
 '''
 from dataclasses import dataclass, field
 from typing import Any

@@ -1,0 +1,5 @@
+program teste {
+    fun f(int x) -> void {}
+    f(false);
+}
+// erro: ERRO SEMÂNTICO na linha 3: tipo do argumento 1 da função 'f' é 'bool', mas o parâmetro espera 'int'

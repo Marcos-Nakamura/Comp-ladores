@@ -1,0 +1,5 @@
+program teste {
+    int x = 1;
+    x();
+}
+// erro: ERRO SEMÂNTICO na linha 3: 'x' não é uma função

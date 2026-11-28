@@ -1,0 +1,5 @@
+program teste {
+    fun f() -> int { return 1; }
+    read(f);
+}
+// erro: ERRO SEMÂNTICO na linha 3: 'f' é uma função, não é variável

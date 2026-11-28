@@ -1,12 +1,14 @@
 '''
-Erro -> tipo especial usado internamente pela análise semântica para indicar
-que uma expressão apresentou algum problema
+Define quais tipos cada operador de Nesti aceita e qual é o tipo do resultado.
+O tipo especial ERRO sinaliza uma expressão inválida e evita mensagens de erro em cascata.
 '''
 ERRO = "erro"
 INT = "int"
 BOOL = "bool"
 
-def tipo_resultado(operador, tipo_esquerdo, tipo_direito=None):
+SEM_OPERANDO_DIREITO = object()
+
+def tipo_resultado(operador, tipo_esquerdo, tipo_direito=SEM_OPERANDO_DIREITO):
     '''
     Função que será integrado com a análise semântica (sem_expressoes)
     '''
@@ -15,7 +17,7 @@ def tipo_resultado(operador, tipo_esquerdo, tipo_direito=None):
         return ERRO
 
     # Operadores unários.
-    if tipo_direito is None:
+    if tipo_direito is SEM_OPERANDO_DIREITO:
         if operador == "-" and tipo_esquerdo == INT:
             return INT
         if operador == "!" and tipo_esquerdo == BOOL:

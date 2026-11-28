@@ -1,0 +1,5 @@
+program teste {
+    int x
+    print(1);
+}
+// erro: ERRO SINTÁTICO na linha 3: token inesperado 'print'

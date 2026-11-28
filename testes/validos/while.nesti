@@ -1,0 +1,9 @@
+program teste {
+    int i = 3;
+    while (i > 0) {
+        print(i);
+        i = i - 1;
+    }
+    print(i);
+}
+// saida: 3 2 1 0

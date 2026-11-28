@@ -1,0 +1,9 @@
+program teste {
+    int a;
+    int b;
+    bool ok;
+    read(a, b, ok);
+    print(a - b, ok);
+}
+// saida: 7 1
+// entrada: 12 5 1

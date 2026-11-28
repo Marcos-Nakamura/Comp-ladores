@@ -1,0 +1,8 @@
+program teste {
+    fun fat(int n) -> int {
+        if (n == 0) { return 1; }
+        return n * fat(n - 1);
+    }
+    print(fat(0), fat(5));
+}
+// saida: 1 120

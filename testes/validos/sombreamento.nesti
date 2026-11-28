@@ -1,0 +1,10 @@
+program teste {
+    int x = 8;
+    fun externa() -> int {
+        int x = 3;
+        fun interna() -> int { return x; }
+        return interna();
+    }
+    print(externa(), x);
+}
+// saida: 3 8

@@ -1,0 +1,9 @@
+program teste {
+    int base = 10;
+    fun externa(int x) -> int {
+        fun interna(int y) -> int { return base + x + y; }
+        return interna(3);
+    }
+    print(externa(4));
+}
+// saida: 17

@@ -132,8 +132,8 @@ def visita_Return(no, contexto):
         return    
 
     if funcao.tipo_retorno == VOID:
-        contexto.visitar(no.expressao) #visita só para achar erros dentro dela
-        contexto.erro(no.linha, "função void não pode retornar valor")
+        if contexto.visitar(no.expressao) != ERRO:
+            contexto.erro(no.linha, "função void não pode retornar valor")
         
         return
 
